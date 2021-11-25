@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&family=Spartan:wght@400;600&display=swap');
+
+#inputPanel{
+    display: grid;
+    grid-template-row: 1fr auto;
+    /* border: 1px solid black; */
+    border: 0;
+    border-radius: 10px;
+    grid-gap: 20px;
+    padding: 10px;
+    background-color: #CCE1FF;
+}
+
+#inputPanel-upper{
+    /* margin: 0.5%;
+    padding: 1%; */
+    font-family: 'Rubik' ,sans-serif;
+    /* display: grid; */
+    /* grid-template-columns: 1fr auto; */
+    /* justify-content: space-around; */
+    align-items: center;
+    /* grid-gap: 20px; */
+    /* background-color: #D2E1FF; */
+}
+
+#input{
+    width: 100%;
+    padding: 10px;
+    height: 180px;
+    /* margin: 0 10px 0 10px;
+    padding: 10px; */
+    overflow-y: scroll;
+    font-family: 'Spartan' ,sans-serif;
+    font-size: 15pt;
+    resize: none;
+    border-radius: 10px;
+
+    box-shadow: 3px 3px 5px rgb(0 0 105 / 50%);
+}
+
+#inputPanel-lower{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-items : center;
+}
+
+#inputPanel-lower button{
+    grid-column: 2/3;
+
+    color: #000069;
+    border: #000069 1px solid;
+
+    width: 170px;
+
+    font-weight: bold;
+    font-size: 13pt;
+}
+
+#inputPanel-lower button:hover{
+    background-color: #000069;
+    color: white;
+}
+
+#inputPanel button:focus{
+  box-shadow: 0 0 0 0.25rem rgb(0 0 105 / 50%)
+}
+
+#buttonPanel{
+    justify-self: end;
+}
+
+#buttonPanel button{
+    margin-left: 3px;
+    margin-right: 3px;
+
+    width: 170px;
+
+    color: #000069;
+    border: #000069 1px solid;
+
+    font-weight: bold;
+}
+
+#buttonPanel button:hover{
+    background-color: #000069;
+    color: white;
+}
+
+#buttonPanel button:focus{
+  box-shadow: 0 0 0 0.25rem rgb(0 0 105 / 50%)
+}
+
+#input::-webkit-scrollbar {
+	width :5px;
+  /* height: 10px; */
+  margin-right: 10px;
+	color: #989898;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  box-sizing: border-box;
+  border-radius: 2.5px;
+}
+
+/* Track */
+#input::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px #989898;
+  border-radius: 2.5px;
+  width: 50px;
+  background: #00ff0000;;
+}
+
+/* Handle */
+#input::-webkit-scrollbar-thumb {
+  background: #989898;
+  border-radius: 2.5px;
+}
+
+#apiPanel{
+    /* margin: 0.5%;
+    padding: 0.5%; */
+    padding: 10px;
+    width: 100%;
+    white-space: pre-wrap;
+    overflow-y: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap : 30px;
+    border: 0;
+    border-radius: 10px;
+    background-color: #CCE1FF;
+
+}

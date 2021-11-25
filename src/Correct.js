@@ -38,8 +38,6 @@ import {
   createTheme
 } from "@material-ui/core/styles";
 
-import '../css/api.css';
-
 function Test() {
     // const ref = React.useRef();
 
@@ -710,10 +708,10 @@ function Test() {
                 </div>
 
                 <div id="inputPanel-lower">
-                    <Button size='sm' onClick={ ()=> postData() } >Submit</Button>
+                    <Button  variant="outline-primary"  size='sm' onClick={ ()=> postData() } >Submit</Button>
                     <ButtonGroup id='buttonPanel'>
-                        <Button onClick={ () => getRandom()}>문장 불러오기</Button>
-                        <Button onClick={ ()=> clearAll() } >Clear</Button>
+                        <Button  variant="outline-primary"  onClick={ () => getRandom()}>Random</Button>
+                        <Button  variant="outline-primary"  onClick={ ()=> clearAll() } >Clear</Button>
                     </ButtonGroup >
                 </div>
             </div>
@@ -865,7 +863,7 @@ function Test() {
 
 
 
-                    <Card className="apis">
+                    <Card border="light" className="apis">
                       <Card.Header>
                         <div>
                               Bert-Gec (오승재)
@@ -890,7 +888,7 @@ function Test() {
                       </Card.Footer>
                     </Card>
 
-                    <Card  className="apis">
+                    <Card border="light" className="apis">
                         <Card.Header >
                            <div>
                                Bert-Gec (한건희)
@@ -915,7 +913,7 @@ function Test() {
                        </Card.Footer>
                     </Card>
 
-                    <Card  className="apis">
+                    <Card border="light" className="apis">
                         <Card.Header >
                            <div>
                                 튜터 첨삭
@@ -935,7 +933,7 @@ function Test() {
                        </Card.Body>
                      </Card>
 
-                    <Card  className="apis">
+                    <Card border="light" className="apis">
                        <Card.Header >
                            <div>
                                Bert-Gec (정단호)
@@ -960,7 +958,7 @@ function Test() {
                       </Card.Footer>
                     </Card>
 
-                    <Card  className="apis">
+                    <Card border="light" className="apis">
                        <Card.Header >
                            <div>
                                Bert-Gec (김준섭)
@@ -985,7 +983,7 @@ function Test() {
                       </Card.Footer>
                     </Card>
 
-                    <Card  className="apis">
+                    <Card border="light" className="apis">
                          <Card.Header >
                             <div>
                                 M. Kaneko (Author)

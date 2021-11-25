@@ -16,7 +16,7 @@ import img_2 from './img/sign2.PNG'
 // import FairSeq from './API/FairSeq';
 // import BertGec from './API/BertGec';
 import NewBertGec from './API/NewBertGec';
-//import NewOutput from './API/NewOutput';
+import NewOutput from './API/NewOutput';
 
 
 // import GingerIt from './API/GingerIt';
@@ -37,8 +37,6 @@ import {
   makeStyles,
   createTheme
 } from "@material-ui/core/styles";
-
-import '../css/api.css';
 
 function Test() {
     // const ref = React.useRef();
@@ -710,13 +708,104 @@ function Test() {
                 </div>
 
                 <div id="inputPanel-lower">
-                    <Button size='sm' onClick={ ()=> postData() } >Submit</Button>
+                    <Button  variant="outline-primary"  size='sm' onClick={ ()=> postData() } >Submit</Button>
                     <ButtonGroup id='buttonPanel'>
-                        <Button onClick={ () => getRandom()}>문장 불러오기</Button>
-                        <Button onClick={ ()=> clearAll() } >Clear</Button>
+                        <Button  variant="outline-primary"  onClick={ () => getRandom()}>Random</Button>
+                        <Button  variant="outline-primary"  onClick={ ()=> clearAll() } >Clear</Button>
                     </ButtonGroup >
                 </div>
             </div>
+
+            <div id="informationPanel">
+              <div id = "aiInformation">
+                  <div>
+                      AI correction
+                      <Switch
+                          checked={true}
+                          // onChange={}
+                          name="aiInformation"
+                        color="primary"
+                      />
+                  </div>
+                  <div id="information-summary">
+                    <div>
+                      단어 수 : {"0\t0"} bytes
+                    </div>
+                    <div>
+                      Ai 첨삭 속도 : {"0\t0"} sec
+                    </div>
+                  </div>
+              </div>
+              <div id="information-result">
+                <div id="infromation-type">
+                  <svg id="arrow" width="50" height="36" viewBox="0 0 50 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M28.8886 33.1891C26.8873 35.665 23.1127 35.665 21.1114 33.1891L1.2711 8.64309C-1.37177 5.37338 0.955417 0.499995 5.15967 0.499995L44.8403 0.499999C49.0446 0.499999 51.3718 5.37339 48.7289 8.64309L28.8886 33.1891Z" fill="black"/>
+                  </svg>
+                  <div id="show-detail">
+                    <div>유형별 점수 확인</div>
+                    <img src={img_2} width="50px" height="50px" />
+                      <circle cx="25" cy="25" r="25" fill="#39B54A"/>
+                      <div style={{
+                        position: "absolute",
+                        left: "20.83%",
+                        right: "20.84%",
+                        top: "50%",
+                        bottom: "50%",
+                        border: "4px solid white"}}></div>
+                        <div style={{
+                          position: "absolute",
+                          top: "20.83%",
+                          bottom: "20.84%",
+                          left: "50%",
+                          right: "50%",
+                          border: "1px solid white"}}></div>
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div id="outputPanel">
+
+                <div id="outputPanel-inner">
+                    <div style={{
+                        //marginLeft: "1%",
+                        width: "100%",
+                        height: "180px",
+                        border: "4px solid red",
+                        borderRadius: "30px"}}>
+                        <div id="inputPanel-upper">
+                            <div style={{
+                                marginLeft:"10px",
+                                marginTop:"15px",
+                                position:"absolute",
+                                width: "100%",
+                                height: "60px",
+                            }}><img src={img_1} width="40px" height="40px" /></div>
+                        </div>
+                        <div id="outputPanel-lower">
+                        <div style={{
+                                
+                                position:"absolute",
+                                marginTop:"60px",
+                                marginLeft:"10px",
+                                width: "100%",
+                                height: "120px",
+
+                            }}><NewOutput result = {resultBertGecJun}/></div>
+                            
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+                
+            </div>
+
+
+
 
             <div id="apiPanel" >
 
@@ -865,7 +954,7 @@ function Test() {
 
 
 
-                    <Card className="apis">
+                    <Card border="light" className="apis">
                       <Card.Header>
                         <div>
                               Bert-Gec (오승재)
@@ -890,7 +979,7 @@ function Test() {
                       </Card.Footer>
                     </Card>
 
-                    <Card  className="apis">
+                    <Card border="light" className="apis">
                         <Card.Header >
                            <div>
                                Bert-Gec (한건희)
@@ -915,7 +1004,7 @@ function Test() {
                        </Card.Footer>
                     </Card>
 
-                    <Card  className="apis">
+                    <Card border="light" className="apis">
                         <Card.Header >
                            <div>
                                 튜터 첨삭
@@ -935,7 +1024,7 @@ function Test() {
                        </Card.Body>
                      </Card>
 
-                    <Card  className="apis">
+                    <Card border="light" className="apis">
                        <Card.Header >
                            <div>
                                Bert-Gec (정단호)
@@ -960,7 +1049,7 @@ function Test() {
                       </Card.Footer>
                     </Card>
 
-                    <Card  className="apis">
+                    <Card border="light" className="apis">
                        <Card.Header >
                            <div>
                                Bert-Gec (김준섭)
@@ -985,7 +1074,7 @@ function Test() {
                       </Card.Footer>
                     </Card>
 
-                    <Card  className="apis">
+                    <Card border="light" className="apis">
                          <Card.Header >
                             <div>
                                 M. Kaneko (Author)

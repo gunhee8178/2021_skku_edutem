@@ -102,7 +102,8 @@ function NewBertGec(props){
 
         fResult.push(<div key="newSetence" >{newSetence}</div>)
         fResult.push(<div className="changeButtons" key="mResult" >{mResult}</div>)
-    //
+    //  
+        console.log(props)
         return fResult;
     }
     else{
