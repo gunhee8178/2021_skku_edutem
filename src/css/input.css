@@ -29,7 +29,7 @@
     height: 130px;
 
     font-family: 'Spartan' ,sans-serif;
-    font-size: 15pt;
+    font-size: 22px;
     color : #000000;
 
     /* margin: 0 10px 0 10px;
@@ -53,14 +53,14 @@
 
     color: white;
     /* border: #164d1e 1px solid; */
-    min-width: 170px;
+    min-width: 130px;
 
     background: #39B54A;
     border-radius: 15px;
 
     border : 0;
     font-weight: bold;
-    font-size: 30px;
+    font-size: 22px;
 }
 
 #inputPanel-lower > button:hover{
@@ -88,17 +88,17 @@
     background: rgba(152, 152, 152, 0.5);
     border-radius: 15px;
 
-    font-size: 30px;
+    font-size: 22px;
 
     font-weight: bold;
 }
 
 #buttonPanel > button:first{
-  min-width: 250px;
+  min-width: 130px;
 }
 
 #buttonPanel > button:last-child{
-  min-width: 170px;
+  min-width: 130px;
 }
 
 #buttonPanel button:hover{

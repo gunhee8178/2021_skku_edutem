@@ -8,6 +8,7 @@ import NewOutput from './API/NewOutput';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Button from 'react-bootstrap/Button'
 import ButtonGroup from 'react-bootstrap/ButtonGroup'
+import {ProgressBar} from 'react-bootstrap';
 /*import Popup */
 import Popup from './Popup'
 
@@ -36,7 +37,9 @@ function Test() {
     let [resultBertGecGun, setResultBertGecGun] = useState(null);
     let [bertGecGunHypo, setBertGecGunHypo] = useState(0);
     let [detail,setdetail] = useState(true);
-
+    const [score, setscore] = useState(0)
+    let [errorword, seterrorword] =useState(0);
+    const [datanumber, setdatanumber] = useState(0);
 
     const [state, setState] = React.useState({
         bertGecGunChecked: true,
@@ -76,8 +79,17 @@ function Test() {
     }
 
     const postBertGun = () => {
+        let count=0;
         const data= { text : text };
-
+        let numcount = 0;
+        let wordsArr = data.text.trim().split(' ' || '&nbsp;'||',');
+        for(let i=0; i<wordsArr.length; i++){
+            if(wordsArr[i]!=''){
+                numcount = numcount +1;
+            }            
+        }
+        console.log('I am data')
+        console.log(data)
         const requestOptions = {
             method: 'POST',
             headers: {
@@ -91,13 +103,17 @@ function Test() {
         fetch('/api/bertgun', requestOptions)
             .then(response => response.json())
             .then( (result) => {
-                // console.log(result)
+                console.log(result['matches'])
+                seterrorword(result['matches']["length"])
                 setResultBertGecGun(result)
                 setBertGecGunTime(result['time'])
                 setBertGecGunHypo(result['hypo'])
                 setType(result['type_dict'])
                 setdetail(false);
-
+                count=type["Grammar"]+type["Usage"]+type["Spelling"]+type["Punctuation"]+type["Other"];
+                setscore(100-(count*5));
+                console.log(score);
+                setdatanumber(numcount)
             })
             .catch(error => {
                 console.error(error);
@@ -191,6 +207,8 @@ function Test() {
             </div>
 
             <div id="informationPanel">
+            <ProgressBar now={score} />
+
               <div id = "aiInformation">
                   <div>
                       AI correction
@@ -203,10 +221,10 @@ function Test() {
                   </div>
                   <div id="information-summary">
                     <div>
-                      단어 수 : {bertGecGunTime} bytes
+                      단어 수 : {datanumber} words
                     </div>
                     <div>
-                      Ai 첨삭 속도 : {bertGecGunTime} sec
+                      AI 첨삭 속도 : {bertGecGunTime} sec
                     </div>
                   </div>
               </div>
@@ -223,7 +241,7 @@ function Test() {
 
             <div id="outputPanel">
                 <div id="outputPanel-inner" >
-                    {xsvg}
+                    {xsvg} 
                     <div id="outputPanel-lower">
                         <NewOutput result = {resultBertGecGun}/>
                     </div>

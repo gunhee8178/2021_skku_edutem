@@ -863,7 +863,7 @@ function Test() {
 
 
 
-                    <Card border="light" className="apis">
+                    <Card className="apis">
                       <Card.Header>
                         <div>
                               Bert-Gec (오승재)
@@ -888,7 +888,7 @@ function Test() {
                       </Card.Footer>
                     </Card>
 
-                    <Card border="light" className="apis">
+                    <Card  className="apis">
                         <Card.Header >
                            <div>
                                Bert-Gec (한건희)
@@ -913,7 +913,7 @@ function Test() {
                        </Card.Footer>
                     </Card>
 
-                    <Card border="light" className="apis">
+                    <Card  className="apis">
                         <Card.Header >
                            <div>
                                 튜터 첨삭
@@ -933,7 +933,7 @@ function Test() {
                        </Card.Body>
                      </Card>
 
-                    <Card border="light" className="apis">
+                    <Card  className="apis">
                        <Card.Header >
                            <div>
                                Bert-Gec (정단호)
@@ -958,7 +958,7 @@ function Test() {
                       </Card.Footer>
                     </Card>
 
-                    <Card border="light" className="apis">
+                    <Card  className="apis">
                        <Card.Header >
                            <div>
                                Bert-Gec (김준섭)
@@ -983,7 +983,7 @@ function Test() {
                       </Card.Footer>
                     </Card>
 
-                    <Card border="light" className="apis">
+                    <Card  className="apis">
                          <Card.Header >
                             <div>
                                 M. Kaneko (Author)

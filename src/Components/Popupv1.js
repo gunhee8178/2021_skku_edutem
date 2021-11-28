@@ -1,36 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import React from "react";
 import img_1 from './img/sign1.PNG'
 
 
 function Popup(props) {
-
-    let [totalCount, setTotalCount] = useState(0)
-    let [comment, setComment] = useState("Not too bad.");
-    const comments = ["Perfect", "Excellent~!", "Good Job~!", "Not too bad.", "Try Harder" ]
-
-
-    useEffect(()=>{
-      if (props.type != null) {
-           setTotalCount (props.type["Grammar"]+props.type["Usage"]+props.type["Spelling"]+props.type["Punctuation"]+props.type["Other"]);
-           if (props.type["Grammar"]+props.type["Usage"]+props.type["Spelling"]+props.type["Punctuation"]+props.type["Other"] == 0) {
-               setComment(comments[0]);
-               console.log(comments[0]);
-           }else if((props.type["Grammar"]+props.type["Usage"]+props.type["Spelling"]+props.type["Punctuation"]+props.type["Other"])/2 < 3){
-               setComment(comments[parseInt(((props.type["Grammar"]+props.type["Usage"]+props.type["Spelling"]+props.type["Punctuation"]+props.type["Other"])/2)+1)]);
-               console.log( parseInt(((props.type["Grammar"]+props.type["Usage"]+props.type["Spelling"]+props.type["Punctuation"]+props.type["Other"])/2)+1) , comments[((props.type["Grammar"]+props.type["Usage"]+props.type["Spelling"]+props.type["Punctuation"]+props.type["Other"])/2)+1]);
-           }else{
-              console.log(comments[4]);
-               setComment(comments[4]);
-           }
-      }
-    }, [props.type]);
-
+  
+    let totalCount = 0
+    const comments = ["Well done~!", "Excellent~!", "Good Job~!", "Not too bad.", "Try Harder" ]
+    if (props.type != null) {
+     totalCount  = props.type["Grammar"]+props.type["Usage"]+props.type["Spelling"]+props.type["Punctuation"]+props.type["Other"];
+    }
+    
+    
     const xsvg = <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <circle cx="25" cy="25" r="25" fill="#39B54A"/>
                   <path d="M35 15L15 35" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
                   <path d="M15 15L35 35" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
-
+    
 
     return(props.trigger)&&(props.type != null) ? (
         <div className="popup">
@@ -44,7 +30,7 @@ function Popup(props) {
                     <div id="content-left">
                       <div>
                         <div id="comment">
-                            {comment}
+                            총 {totalCount}개
                         </div>
                       </div>
                       <div id="total-score">
@@ -81,7 +67,7 @@ function Popup(props) {
 
         </div>
     ): "";
-
+    
   }
 
 export default Popup

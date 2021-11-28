@@ -24,23 +24,18 @@ const logo = <svg width="489" height="80" viewBox="0 0 489 80" fill="none" xmlns
 function App() {
   return (
     <div style={{display:"grid", gridGap:"10px"}}>
-        <div id="header" style={ { display: "flex" , justifyContent: "space-between"} }>
-            {/*
-                <Navbar.Brand href="/demo">SGC</Navbar.Brand>
-                <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                    <Navbar.Collapse id="basic-navbar-nav">
-                      <Nav className="me-auto">
-                        <Nav.Link href="/demo">DEMO</Nav.Link>
-                        <Nav.Link href="/test">TEST</Nav.Link>
-                      </Nav>
-                  </Navbar.Collapse>
-            */}
-            <div>
+        <div id="header">
+            <a href="/score">
             {logo}
+            </a>
 
-            </div>
+            <img src={logoImg}>
+            </img>
 
-            <img src={logoImg}></img>
+            <NavDropdown title="Pages" id="basic-nav-dropdown">
+              <NavDropdown.Item href="/score">Scoring</NavDropdown.Item>
+              <NavDropdown.Item href="/demo">Comparison</NavDropdown.Item>
+            </NavDropdown>
         </div>
 
         <Route path="/demo" component={Correct} />

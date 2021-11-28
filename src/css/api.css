@@ -18,9 +18,8 @@
 }
 
 #apiPanel .apis .card-body{
-    display: flex;
-    justify-content: space-between;
     background-color: white;
+    overflow-y: auto;
 }
 
 .correction{
@@ -29,6 +28,13 @@
     grid-column-gap: 1pt;
     align-items: center;
     justify-items: center;
+
+    border : none;
+    background : inherit;
+}
+
+.correction.blank{
+  grid-gap: 0;
 }
 
 .wrong{

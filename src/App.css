@@ -5,6 +5,9 @@
 } */
 #header{
   padding: 40px 20px 0px 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-content: space-between;
 }
 
 #wrapper{
@@ -17,11 +20,14 @@
 }
 
 #header img{
-    position: absolute;
-    left: 50%;
-    transform: translate(-50%, 0%);
     height: 80px;
     width: 130px;
+    justify-self: center;
+}
+
+#header .nav-item{
+    justify-self:  end;
+    align-self: center;
 }
 /* Handle on hover */
 /* #input::-webkit-scrollbar-thumb:hover {
