@@ -42,8 +42,8 @@ function App() {
         <Route path="/score" component={Score} />
         <Route path="/test" component={Test} />
 
-        <div id="footer" style={ { marginTop: "10px", display: "flex" , justifyContent: "center", borderTop :"solid #000069 2px"}}>
-            <div>Copyright © 2021 성소-에듀템. All rights reserved.</div>
+        <div id="footer" style={ { marginTop: "10px", display: "flex" , justifyContent: "center", borderTop :"solid #000069 2px", fontSize:"20px;"}}>
+            <div>Copyright © <b>2021 성균관대 소프트웨어학과-에듀템.</b> All rights reserved.</div>
         </div>
     </div>
   );

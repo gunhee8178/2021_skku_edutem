@@ -96,6 +96,7 @@ function Test() {
 
         setBertGecPaperTime(0);
         setResultBertGecPaper(null);
+        setBertGecPaperHypo(0);
 
     }
 
@@ -151,7 +152,7 @@ function Test() {
         fetch('/api/bertseungjae', requestOptions)
             .then(response => response.json())
             .then( (result) => {
-                console.log("jae", result)
+                // console.log("jae", result)
                 setResultBertGecSeung(result);
                 setBertGecSeungTime(result['time']);
                 setBertGecSeungHypo(result['hypo']);
@@ -179,7 +180,7 @@ function Test() {
         fetch('/api/bertgun', requestOptions)
             .then(response => response.json())
             .then( (result) => {
-                console.log(result)
+                // console.log(result)
                 setResultBertGecGun(result)
                 setBertGecGunTime(result['time'])
                 setBertGecGunHypo(result['hypo'])
@@ -233,7 +234,7 @@ function Test() {
         fetch('/api/bertjun', requestOptions)
             .then(response => response.json())
             .then( (result) => {
-                console.log("jun", result);
+                // console.log("jun", result);
                 setResultBertGecJun(result);
                 setBertGecJunTime(result['time']);
                 setBertGecJunHypo(result['hypo']);
@@ -413,7 +414,7 @@ function Test() {
                 <Card  className="apis">
                      <Card.Header >
                         <div>
-                            M. Kaneko (Author)
+                            M. Kaneko<sub style={{fontSize : "13px"}}>(Author)</sub>
                              <Switch
                                  checked={state.bertGecPaperChecked}
                                  onChange={handleChange_c}

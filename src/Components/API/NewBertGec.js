@@ -17,16 +17,21 @@ function NewBertGec(props){
     var newSetence =[];
     var wrongWordsList = [];
     var styleList_for_reset = [];
-    let[result, setResult] = useState(null)
+    var init_hypo = [];
+    let [result, setResult] = useState(null)
     let [buttonText, setButtonText] = useState(wrongWordsList);
+    let [hypos, setHypos] = useState(init_hypo);
     let [styleList, setStyleList] = useState(styleList_for_reset);
+    let [suggestion, setSuggestion] = useState(null);
+    let [suggestionOn, setOn] = useState(false);
 
     function resetButtonText(){
         if(props.result && props.result.matches){
             wrongWordsList = []
             for (let i = 0; i < props.result.matches.length; i++) {
                 if(props.result.matches[i].replacements[0]){
-                    wrongWordsList.push( props.result.matches[i].replacements[0].value )
+                    wrongWordsList.push( props.result.matches[i].replacements[0].value );
+                    init_hypo.push( props.result.matches[i].replacements[0].hypo );
                     // wrongWordsList.push( props.result.matches[i].replacements[0].value ) ;
                 }
                 if (!(props.result.matches[i]["length"] && props.result.matches[i].replacements[0].value)) {
@@ -37,20 +42,48 @@ function NewBertGec(props){
             }
             setStyleList(styleList_for_reset);
             setButtonText (wrongWordsList)
+            setHypos(init_hypo);
         }
     }
 
-    function changeTextByClick(i, newWord){
+    function changeTextByClick(i,j, newWord){
         var newArr = [...buttonText];
+        var newHypo = [...hypos]
         newArr[i] = newWord;
+        newHypo[i] = props.result.matches[i].replacements[j].hypo
         setButtonText(newArr);
+        setHypos(newHypo);
+        setOn(false);
     }
 
+    function changeSuggestion(i) {
+        var sug = [];
+        var front = [];
+        var wrongWord = result.text.substring(result.matches[i].offset, result.matches[i].offset + result.matches[i].length);
+        if (wrongWord) {
+            front.push(<div className="wrongWord">{wrongWord}</div>);
+        }else{
+            front.push(<div style={{textDecoration : "none"}}className="wrongWord">{"\t"} </div>)
+        }
+        front.push(<BsArrowRight/>)
 
+        sug.push(front);
+        for (let j = 0; j < props.result.matches[i].replacements.length; j++) {
+            if (props.result.matches[i].replacements[j].value) {
+                sug.push(<button className="newWord" onClick={() => changeTextByClick(i,j, result.matches[i].replacements[j].value)} >{props.result.matches[i].replacements[j].value}</button>)
+            }else{
+                sug.push(<button className="newWord" onClick={() => changeTextByClick(i,j, result.matches[i].replacements[j].value)} >{"\t"}</button>)
+            }
+
+        }
+        setOn(true);
+        setSuggestion(sug);
+    }
 
     useEffect(()=>{
-        setResult(props.result)
-        resetButtonText()
+        setResult(props.result);
+        resetButtonText();
+        setSuggestion(null);
     }, [props.result]);
 
 
@@ -78,7 +111,6 @@ function NewBertGec(props){
                         </Card.Text>
                     </Card.Body>
                     <Card.Footer>
-                        Place For Suggestion
                     </Card.Footer>
                 </>
               );
@@ -102,15 +134,15 @@ function NewBertGec(props){
               if (buttonText[i]) {
                 textDeco.push(<div className='right' key= {result.text.substring(offset,offset+len)+"right"} >{ buttonText[i] }</div>)
               }
-              if(result.matches[i].replacements[0].hypo && result.matches[i].replacements[0].hypo.length > 0) {
-                  textDeco.push(<div className="hypo" key={result.matches[i].replacements[0].hypo[0]}>{result.matches[i].replacements[0].hypo.join("\t")}</div>)
+              if(hypos[i] && hypos[i].length > 0) {
+                  textDeco.push(<div className="hypo" key={hypos[i][0]}>{hypos[i].join("\t")}</div>)
               }
 
               if (buttonText[i] && len>0) {
-                  newSetence.push(<button className= 'correction' onClick={()=>alert(styleList[i] + i)} >{textDeco}</button>)
+                  newSetence.push(<button className= {'correction '+styleList[i]} onClick={()=>changeSuggestion(i)} >{textDeco}</button>)
               }
               else{
-                  newSetence.push(<button className= {'correction '+styleList[i]} onClick={()=>alert(styleList[i] + i)}  >{textDeco}</button>)
+                  newSetence.push(<button className= {'correction '+styleList[i]} onClick={()=>changeSuggestion(i)}  >{textDeco}</button>)
               }
               oldOffset = offset+len;
 
@@ -141,7 +173,6 @@ function NewBertGec(props){
                           </Card.Text>
                       </Card.Body>
                       <Card.Footer>
-                          Place For Suggestion
                       </Card.Footer>
                   </>
         }
@@ -154,7 +185,7 @@ function NewBertGec(props){
                         </Card.Text>
                     </Card.Body>
                     <Card.Footer>
-                        Place For Suggestion
+                        {suggestionOn&&suggestion}
                     </Card.Footer>
                 </>
         );
@@ -171,7 +202,6 @@ function NewBertGec(props){
                         </Card.Text>
                     </Card.Body>
                     <Card.Footer>
-                        Place For Suggestion
                     </Card.Footer>
                 </>
             );
