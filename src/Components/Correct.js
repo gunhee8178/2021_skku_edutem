@@ -330,10 +330,26 @@ function Test() {
             </div>
 
             <div id="apiPanel" >
+                <Card  className="apis">
+                    <Card.Header >
+                       <div>
+                           V1
+                           <Switch
+                               checked={state.bertGecGunChecked}
+                               onChange={handleChange_c}
+                               name="bertGecGunChecked"
+                             color="primary"
+                           />
+                           </div>
+                       <div> Score : {bertGecGunHypo} ({bertGecGunTime}s)</div>
+                    </Card.Header>
+                   <NewBertGec result = {resultBertGecGun}/>
+                </Card>
+
                 <Card className="apis">
                   <Card.Header>
                     <div>
-                          오승재
+                          V2
                           <Switch
                               checked={state.bertGecSeungChecked}
                               onChange={handleChange_c}
@@ -346,21 +362,7 @@ function Test() {
                   <NewBertGec result = {resultBertGecSeung}/>
                 </Card>
 
-                <Card  className="apis">
-                    <Card.Header >
-                       <div>
-                           한건희
-                           <Switch
-                               checked={state.bertGecGunChecked}
-                               onChange={handleChange_c}
-                               name="bertGecGunChecked"
-                             color="primary"
-                           />
-                           </div>
-                       <div> Score : {bertGecGunHypo} ({bertGecGunTime}s)</div>
-                    </Card.Header>
-                   <NewBertGec result = {resultBertGecGun}/>
-                </Card>
+
 
                 <Card  className="apis">
                     <Card.Header >

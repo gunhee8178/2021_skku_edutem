@@ -32,6 +32,7 @@ function Test() {
     let [text, setText] = useState("");
     let [noText, setNoText] = useState("영어 문장을 입력해주세요.");
     const [loading, setLoading] = useState(false);
+    let numcount = 0;
 
     let [bertGecGunTime, setBertGecGunTime] = useState(0);
     let [resultBertGecGun, setResultBertGecGun] = useState(null);
@@ -39,7 +40,7 @@ function Test() {
     let [detail,setdetail] = useState(true);
     const [score, setscore] = useState(0)
     let [errorword, seterrorword] =useState(0);
-    const [datanumber, setdatanumber] = useState(0);
+    const [datanumber, setdatanumber] = useState(numcount);
 
     const [state, setState] = React.useState({
         bertGecGunChecked: true,
@@ -81,13 +82,14 @@ function Test() {
     const postBertGun = () => {
         let count=0;
         const data= { text : text };
-        let numcount = 0;
         let wordsArr = data.text.trim().split(' ' || '&nbsp;'||',');
+        numcount = 0;
         for(let i=0; i<wordsArr.length; i++){
             if(wordsArr[i]!=''){
                 numcount = numcount +1;
-            }            
+            }
         }
+        setdatanumber(numcount)
         console.log('I am data')
         console.log(data)
         const requestOptions = {
@@ -100,7 +102,7 @@ function Test() {
             body : JSON.stringify(data)
         };
 
-        fetch('/api/bertgun', requestOptions)
+        fetch('/api/bertseungjae', requestOptions)
             .then(response => response.json())
             .then( (result) => {
                 console.log(result['matches'])
@@ -108,12 +110,12 @@ function Test() {
                 setResultBertGecGun(result)
                 setBertGecGunTime(result['time'])
                 setBertGecGunHypo(result['hypo'])
-                setType(result['type_dict'])
+                setType(result)
                 setdetail(false);
-                count=type["Grammar"]+type["Usage"]+type["Spelling"]+type["Punctuation"]+type["Other"];
+                count=type['type_dict']["Grammar"]+type['type_dict']["Usage"]+type['type_dict']["Spelling"]+type['type_dict']["Punctuation"]+type['type_dict']["Other"];
                 setscore(100-(count*5));
                 console.log(score);
-                setdatanumber(numcount)
+                // setdatanumber(numcount)
             })
             .catch(error => {
                 console.error(error);
@@ -241,7 +243,6 @@ function Test() {
 
             <div id="outputPanel">
                 <div id="outputPanel-inner" >
-                    {xsvg} 
                     <div id="outputPanel-lower">
                         <NewOutput result = {resultBertGecGun}/>
                     </div>
