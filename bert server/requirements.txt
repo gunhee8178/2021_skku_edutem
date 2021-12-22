@@ -1,0 +1,9 @@
+torch==1.1.0
+nltk
+boto3
+errant
+requests
+
+flask
+flask_restx
+
