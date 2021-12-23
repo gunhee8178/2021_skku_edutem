@@ -1,3 +1,5 @@
+import re
+
 def get_json_result(id, annotator, src_sent, tgt_sents, final_hypo, matches, data_path='data', bert_gec_path='bert-gec'):
     # print(f'src_sent : {src_sent}')
     # print(f'tgt_sent : {tgt_sent}')
@@ -35,16 +37,40 @@ def get_json_result(id, annotator, src_sent, tgt_sents, final_hypo, matches, dat
             if int(start_word) == -1 and int(end_word) == -1:
                 continue
 
-            if start_word == end_word :
-                if start_word == len(source):
-                    value = ' '+e.c_str
-                else:
-                    value = e.c_str + ' '
+            tmp_c_str=e.c_str
+            c_str = e.c_str
+            p = re.compile('[0-9]+. [0-9]+')
+            m = p.search(tmp_c_str)
+            while (m != None):
+                tmp_c_str = tmp_c_str.replace( m.group(), ''.join(m.group().split()) )
+                m = p.search(tmp_c_str)
 
+            print("tmp_c_str", " e.o_str", tmp_c_str , e.o_str)
+            if tmp_c_str == e.o_str :
+                continue
             else :
-                value = e.c_str
+                c_str = tmp_c_str
+
+            p = re.compile(' "')
+            m = p.search(tmp_c_str)
+            while (m != None):
+                tmp_c_str = tmp_c_str.replace( m.group(), "\"" )
+                m = p.search(tmp_c_str)
+
+            print("tmp_c_str", " e.o_str", tmp_c_str , e.o_str)
+            if tmp_c_str == e.o_str :
+                continue
 
             comp_word = e.o_str
+            if start_word == end_word :
+                if start_word == len(source):
+                    value = ' '+c_str
+                else:
+                    value = c_str + ' '
+
+            else :
+                value = c_str
+
             comp_idx = comp_word.find('’')
             if comp_idx != -1 :
                 if str(comp_word[:comp_idx]) == str(value[:comp_idx]) and str(comp_word[comp_idx +1 :]) == str(value[comp_idx +1 :]):
@@ -55,7 +81,7 @@ def get_json_result(id, annotator, src_sent, tgt_sents, final_hypo, matches, dat
             for t in source[int(start_word):int(end_word)]:
                 length = length + len(t)
 
-            if e.c_str == '':
+            if c_str == '':
                 length +=1
 
             sub = int(end_word)-int(start_word)
@@ -63,12 +89,12 @@ def get_json_result(id, annotator, src_sent, tgt_sents, final_hypo, matches, dat
                     length += sub - 1
 
             # get offset from aligned text
-            try:
-                offset = matches[offset]
-            except KeyError:
-                print(f'** KeyError Occured at index {offset}. Check out the log file. **')
-                with open('log.txt', 'a') as file:
-                    file.write(src_sent)
+            # try:
+            #     offset = matches[offset]
+            # except KeyError:
+            #     print(f'** KeyError Occured at index {offset}. Check out the log file. **')
+            #     with open('log.txt', 'a') as file:
+            #         file.write(src_sent)
                 # return {f'message' : 'KeyError occured from matches ({offset}). Check it out.', 'matches' : matches}
 
 

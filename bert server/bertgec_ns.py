@@ -24,6 +24,9 @@ from fairseq_utils import *
 from my_utils import *
 import detok
 
+import spacy
+
+
 def replaceQuot(sent):
     while sent.find("``") > -1:
         sent = sent.replace("``", '"')
@@ -189,14 +192,14 @@ class Bertgec(Resource):
         #
         # model_input_text = '\n'.join(sent_tokenize(model_input_text))
 
-
-
-        original_sentences = sent_tokenize(original_text)
+        nlp = spacy.load('en')
+        tokens = nlp(original_text)
+        # original_sentences = sent_tokenize(original_text)
         # start for
         matches = {}
         sentence_idx = 0
-        for original_sentence in original_sentences:
-            original_sentence = replaceQuot(original_sentence)
+        for sentence in tokens.sents:
+            original_sentence = replaceQuot( str(sentence) )
             with open(file["incorr"], 'w') as write_file:
                 write_file.write(original_sentence)
 
@@ -215,7 +218,7 @@ class Bertgec(Resource):
             start_id = 0
             besthypo = 0
 
-            special_tok = ["n\'t", "\'m", "\'re", "\'s", "\'ve", "\'ll", ".", ",", "!", "?", "\'", "\"" ]
+            special_tok = ["n\'t", "\'m", "\'re", "\'s", "\'ve", "\'ll", ".", ",", "!", "?"]
             for inputs in buffered_read(file["cat_src"], args.buffer_size):
                 results = []
                 for batch in make_batches(inputs, args, task, max_positions, encode_fn, bertdict):
