@@ -107,35 +107,6 @@ function Test() {
         setResultBertGecEdu(null)
     }
 
-
-    const postBertPaper = () => {
-        const data= { text : text };
-
-        const requestOptions = {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': '*',
-            },
-            body : JSON.stringify(data)
-        };
-
-        fetch('/api/bertpaper', requestOptions)
-            .then(response => response.json())
-            .then( (result) => {
-                // console.log(result)
-                setResultBertGecPaper(result);
-                setBertGecPaperTime(result['time']);
-                setBertGecPaperHypo(result['hypo'])
-                // console.log("proWritingAid" , result)
-            })
-            .catch(error => {
-                console.error(error);
-            });
-            // unregister(
-    }
-
     const postBertSeungjae = () => {
         const data= { text : text };
 
@@ -149,7 +120,7 @@ function Test() {
             body : JSON.stringify(data)
         };
 
-        fetch('/api/bertseungjae', requestOptions)
+        fetch('/api/bertedutem', requestOptions)
             .then(response => response.json())
             .then( (result) => {
                 // console.log("jae", result)
@@ -164,106 +135,10 @@ function Test() {
             // unregister(
     }
 
-    const postBertGun = () => {
-        const data= { text : text };
 
-        const requestOptions = {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': '*',
-            },
-            body : JSON.stringify(data)
-        };
-
-        fetch('/api/bertgun', requestOptions)
-            .then(response => response.json())
-            .then( (result) => {
-                // console.log(result)
-                setResultBertGecGun(result)
-                setBertGecGunTime(result['time'])
-                setBertGecGunHypo(result['hypo'])
-                // console.log("proWritingAid" , result)
-            })
-            .catch(error => {
-                console.error(error);
-            });
-            // unregister(
-    }
-    const postBertDanho = () => {
-        const data= { text : text };
-
-        const requestOptions = {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': '*',
-            },
-            body : JSON.stringify(data)
-        };
-
-        fetch('/api/bertdanho', requestOptions)
-            .then(response => response.json())
-            .then( (result) => {
-                // console.log(result)
-                setResultBertGecDanho(result);
-                setBertGecDanhoTime(result['time']);
-                setBertGecDanhoHypo(result['hypo']);
-                // console.log("proWritingAid" , result)
-            })
-            .catch(error => {
-                console.error(error);
-            });
-            // unregister(
-    }
-    const postBertJun = () => {
-        const data= { text : text };
-
-        const requestOptions = {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': '*',
-            },
-            body : JSON.stringify(data)
-        };
-
-        fetch('/api/bertjun', requestOptions)
-            .then(response => response.json())
-            .then( (result) => {
-                // console.log("jun", result);
-                setResultBertGecJun(result);
-                setBertGecJunTime(result['time']);
-                setBertGecJunHypo(result['hypo']);
-                // console.log("proWritingAid" , result)
-            })
-            .catch(error => {
-                console.error(error);
-            });
-            // unregister(
-    }
 
     const  post = () =>{
-        // if(state['gectorChecked']) {postGector() ;}
-        // if(state['fairseqChecked']){postFairSeq() ;}
-        // if(state['bertChecked']){postBertGec() ;}
-        // if(state['languageToolNgramChecked']){postLanguageToolNgram();}
-        // if(state['languageToolJavaChecked']){postLanguageToolJava();}
-        // postGrammarbot();
-        // postLanguageTool()
-        // postTextGears();
-        // postProWritingGaid()
-        // postLanguageToolpY()
-
-        // postGingerIt()
         if(state['bertGecSeungChecked']){postBertSeungjae();}
-        if(state['bertGecGunChecked']){postBertGun()};
-        if(state['bertGecDanhoChecked']){postBertDanho();}
-        if(state['bertGecJunChecked']){postBertJun();}
-        if(state['bertGecPaperChecked']){postBertPaper();}
     }
 
     const postData = async ()  =>{
@@ -330,21 +205,6 @@ function Test() {
             </div>
 
             <div id="apiPanel" >
-                <Card  className="apis">
-                    <Card.Header >
-                       <div>
-                           V1
-                           <Switch
-                               checked={state.bertGecGunChecked}
-                               onChange={handleChange_c}
-                               name="bertGecGunChecked"
-                             color="primary"
-                           />
-                           </div>
-                       <div> Score : {bertGecGunHypo} ({bertGecGunTime}s)</div>
-                    </Card.Header>
-                   <NewBertGec result = {resultBertGecGun}/>
-                </Card>
 
                 <Card className="apis">
                   <Card.Header>
@@ -380,55 +240,11 @@ function Test() {
                     <NewBertGec result = {resultBertGecEdu}/>
                  </Card>
 
-                <Card  className="apis">
-                   <Card.Header >
-                       <div>
-                           정단호
-                           <Switch
-                               checked={state.bertGecDanhoChecked}
-                               onChange={handleChange_c}
-                               name="bertGecDanhoChecked"
-                             color="primary"
-                           />
-                           </div>
-                       <div>Score : {bertGecDanhoHypo} ({bertGecDanhoTime}s)</div>
-                   </Card.Header>
-                   <NewBertGec result = {resultBertGecDanho}/>
-                </Card>
 
-                <Card  className="apis">
-                   <Card.Header >
-                       <div>
-                           김준섭
-                           <Switch
-                               checked={state.bertGecJunChecked}
-                               onChange={handleChange_c}
-                               name="bertGecJunChecked"
-                             color="primary"
-                           />
-                           </div>
-                       <div>Score : {bertGecJunHypo} ({bertGecJunTime}s)</div>
-                     </Card.Header>
-                     <NewBertGec result = {resultBertGecJun}/>
 
-                </Card>
 
-                <Card  className="apis">
-                     <Card.Header >
-                        <div>
-                            M. Kaneko<sub style={{fontSize : "13px"}}>(Author)</sub>
-                             <Switch
-                                 checked={state.bertGecPaperChecked}
-                                 onChange={handleChange_c}
-                                 name="bertGecPaperChecked"
-                               color="primary"
-                             />
-                         </div>
-                         <div>Score : {bertGecPaperHypo} ({bertGecPaperTime}s)</div>
 
-                     </Card.Header>
-                     <NewBertGec result = {resultBertGecPaper}/>
-                </Card>
+
             </div>
         </div>
     </div>

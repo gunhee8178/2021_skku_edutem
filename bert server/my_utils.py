@@ -39,7 +39,7 @@ def get_json_result(id, annotator, src_sent, tgt_sents, final_hypo, matches, dat
 
             tmp_c_str=e.c_str
             c_str = e.c_str
-            p = re.compile('[0-9]+. [0-9]+')
+            p = re.compile('[0-9]+[.,] [0-9]+')
             m = p.search(tmp_c_str)
             while (m != None):
                 tmp_c_str = tmp_c_str.replace( m.group(), ''.join(m.group().split()) )

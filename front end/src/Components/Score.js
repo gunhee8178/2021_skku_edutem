@@ -102,7 +102,7 @@ function Test() {
             body : JSON.stringify(data)
         };
 
-        fetch('/api/bertseungjae', requestOptions)
+        fetch('/api/bertedutem', requestOptions)
             .then(response => response.json())
             .then( (result) => {
                 console.log(result['matches'])
