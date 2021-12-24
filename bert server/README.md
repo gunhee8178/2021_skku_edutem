@@ -1,3 +1,5 @@
+## How to use
+- First download the necessary tools using the following command:
 ```
 git clone https://github.com/kanekomasahiro/bert-gec 
 cd scripts
